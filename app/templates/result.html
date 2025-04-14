@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Résultat</title>
+  </head>
+  <body>
+    <h2>Résultats du classement des CV</h2>
+    <p><strong>Compétences recherchées :</strong> {{ skills }}</p>
+
+    <ol>
+      {% for filename, score in results %}
+      <li>
+        {{ filename }} — Score : {{ score }}
+        <a
+          href="{{ url_for('main.serve_cv', filename=filename) }}"
+          target="_blank"
+          >🔍 Voir le CV</a
+        >
+      </li>
+      {% endfor %}
+    </ol>
+
+    <a href="/">← Retour à l'accueil</a>
+  </body>
+</html>
