@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <title>{% block title %}CV Ranker{% endblock %}</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+  </head>
+
+  <body>
+    <nav>
+      {% if current_user.is_authenticated %} Bonjour {{ current_user.prenom }}
+      {{ current_user.nom }} |
+      <a href="{{ url_for('main.dashboard') }}">🏠 Tableau de bord</a> |
+      <a href="{{ url_for('auth.logout') }}">🚪 Déconnexion</a>
+      {% else %}
+      <a href="{{ url_for('auth.login') }}">Connexion</a> |
+      <a href="{{ url_for('auth.register') }}">Inscription</a>
+      {% endif %}
+    </nav>
+    <hr />
+    {% block content %}{% endblock %}
+  </body>
+</html>

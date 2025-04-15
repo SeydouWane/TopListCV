@@ -1,0 +1,42 @@
+{% extends 'base.html' %} {% block title %}Créer un CV Ranker{% endblock %} {%
+block content %}
+<h2>🆕 Créer un nouveau CV Ranker</h2>
+
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+
+<form method="POST" enctype="multipart/form-data">
+  <!-- 🔤 Titre -->
+  <label for="titre">Nom de l'appel à candidature :</label><br />
+  <input type="text" name="titre" id="titre" required /><br /><br />
+
+  <!-- 📁 Sélection de dossier de CVs -->
+  <label for="cv_files">Fichiers PDF (sélectionner un dossier) :</label><br />
+  <input
+    type="file"
+    name="cv_files"
+    id="cv_files"
+    webkitdirectory
+    directory
+    multiple
+    required
+  /><br /><br />
+
+  <!-- 🔎 Compétences -->
+  <label for="skills"
+    >Compétences recherchées (séparées par des virgules) :</label
+  ><br />
+  <input type="text" name="skills" id="skills" required /><br /><br />
+
+  <!-- 🧠 Mode de classement -->
+  <select name="mode" id="mode">
+    <option value="skills">Par compétences uniquement</option>
+    <option value="experience">Par expérience uniquement</option>
+    <option value="both" selected>Compétences + Expérience</option>
+  </select>
+  
+
+  <!-- 🚀 Lancer -->
+  <button type="submit">🔍 Analyser et enregistrer</button>
+</form>
+
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block title %}Résultats du Ranker{% endblock %}
+
+{% block content %}
+<h2>📊 Résultats du Ranker</h2>
+<p><strong>Nom :</strong> {{ ranker.titre }}</p>
+<p><strong>Compétences :</strong> {{ ranker.skills }}</p>
+
+<form method="get" style="margin-bottom: 20px;">
+  <label for="tri">Trier par :</label>
+  <select name="tri" id="tri" onchange="this.form.submit()">
+    <option value="competences" {% if request.args.get('tri') == 'competences' %}selected{% endif %}>Compétences</option>
+    <option value="experience" {% if request.args.get('tri') == 'experience' %}selected{% endif %}>Expérience</option>
+    <option value="combine" {% if request.args.get('tri') == 'combine' %}selected{% endif %}>Compétences + Expérience</option>
+  </select>
+</form>
+
+<ol>
+  {% for result in results %}
+    <li>
+      {{ result.filename }} —
+      Score Compétence : {{ result.relevance_score }},
+      Expérience : {{ result.experience_days }} jours<br>
+      <a href="{{ url_for('main.serve_uploaded_file', filename=result.filename) }}" target="_blank">🔍 Voir le CV</a>
+    </li>
+  {% endfor %}
+</ol>
+
+<a href="{{ url_for('main.dashboard') }}">← Retour au tableau de bord</a>
+{% endblock %}

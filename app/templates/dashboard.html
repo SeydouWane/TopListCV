@@ -1,0 +1,39 @@
+{% extends 'base.html' %} {% block title %}Mon Tableau de Bord{% endblock %} {%
+block content %}
+<h2>📂 Mes CV Rankers</h2>
+
+<a href="{{ url_for('main.create_ranker') }}" class="button-link"
+  >➕ Créer un nouveau CV Ranker</a
+>
+<link
+  rel="stylesheet"
+  href="{{ url_for('static', filename='styledash.css') }}"
+/>
+
+<ul>
+  {% for ranker in rankers %}
+  <li>
+    <div class="ranker-info">
+      <strong>{{ ranker.titre }}</strong> — {{
+      ranker.date_creation.strftime('%d/%m/%Y') }}<br />
+      Compétences : {{ ranker.skills }}
+    </div>
+
+    <div class="ranker-actions">
+      <form
+        action="{{ url_for('main.delete_ranker', ranker_id=ranker.id) }}"
+        method="POST"
+        onsubmit="return confirm('Voulez-vous vraiment supprimer ce CV Ranker ?');"
+      >
+        <button type="submit" class="delete-button">🗑</button>
+      </form>
+
+      <a href="{{ url_for('main.view_ranker', ranker_id=ranker.id) }}">🔍</a>
+    </div>
+  </li>
+  {% endfor %}
+</ul>
+
+{% if not rankers %}
+<p>Aucun CV Ranker trouvé.</p>
+{% endif %} {% endblock %}
