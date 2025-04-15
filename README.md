@@ -136,16 +136,6 @@ id, filename, relevance_score, experience_days, ranker_id (foreign key)
 
 ---
 
-### 📈 Améliorations possibles
-
-- 📌 Ajouter une **exportation CSV** des résultats
-- 📌 Détection multi-langue (FR + EN)
-- 📌 Pondération personnalisée par l'utilisateur
-- 📌 Intégration avec **ATS externes** ou API RH
-- 📌 Hébergement sur un serveur (Render, Heroku, etc.)
-
----
-
 ### 🧠 Conclusion
 
 Ce projet propose une solution concrète à l’automatisation du **tri de CV** en combinant des techniques de **traitement automatique du langage naturel** et une interface web simple à utiliser. Il rend le **recrutement plus rapide et objectif**, en réduisant la charge humaine liée à l’analyse manuelle des candidatures.
